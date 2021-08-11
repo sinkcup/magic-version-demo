@@ -19,10 +19,12 @@ jobs:
         uses: sinkcup/magic-version@v1.1.0
 
       - name: Pack
-        run: tar -cf demo-${{ env.MAGIC_VERSION }}.tar LICENSE README.md
+        run: |
+          mkdir -p dist
+          cp LICENSE README.md dist/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: demo
-          path: demo-${{ env.MAGIC_VERSION }}.tar
+          name: demo-${{ env.MAGIC_VERSION }}
+          path: dist
